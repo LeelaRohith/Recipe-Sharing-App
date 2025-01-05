@@ -24,8 +24,6 @@ export default function Myrecipes() {
       }
     );
 
-    //console.log(response.data);
-
     setCurrentuserid(res.data.id);
     setUserfirstname(res.data.firstname);
     setUserlastname(res.data.lastname);

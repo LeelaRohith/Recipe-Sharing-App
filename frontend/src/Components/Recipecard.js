@@ -126,7 +126,6 @@ function Editform(props) {
 
   const handleDelete = (ingredient) => {
     setIngredients(ingredients.filter((x) => x !== ingredient));
-    //console.log(ingredient);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -155,7 +154,7 @@ function Editform(props) {
         { ingredients: ingredients },
         { headers }
       );
-      console.log(editingredientsResponse.data);
+
       enqueueSnackbar("Recipe updated successfully", {
         variant: "success",
         autoHideDuration: 5000,
@@ -200,7 +199,6 @@ function Editform(props) {
       { id: props.details.id },
       { headers }
     );
-    console.log(response.data);
     const r = props.recipedetails.filter(
       (item) => item.id !== props.details.id
     );

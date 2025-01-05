@@ -37,7 +37,7 @@ export default function Profile() {
       lastname: data.get("lastName"),
       email: useremail,
     };
-    console.log(editeduser);
+
     const headers = {
       Authorization: "Bearer " + localStorage.getItem("token"),
     };
@@ -47,7 +47,7 @@ export default function Profile() {
         editeduser,
         { headers }
       );
-      console.log(response.data.text);
+
       //localStorage.setItem("token", response.data.text);
       setLoading(false);
       enqueueSnackbar("Profile details updated", {

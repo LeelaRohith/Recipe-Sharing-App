@@ -19,5 +19,7 @@ public class RecipeDTO {
     private String cookingInstructions;
     private String image;
     private List<IngredientsDTO> ingredients;
+    private String userfirstname;
+    private String userlastname;
     // Other fields as needed
 }

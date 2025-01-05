@@ -55,7 +55,7 @@ export default function SignUp() {
       email: data.get("email"),
       password: data.get("password"),
     };
-    console.log(user);
+
     axios
       .post(`${process.env.React_App_Backend_Url}/api/v1/auth/register`, user)
       .then(function (response) {

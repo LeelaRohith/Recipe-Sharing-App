@@ -75,7 +75,6 @@ export default function Addrecipe(props) {
   //console.log(newingredient);
   const handleDelete = (ingredient) => {
     setIngredients(ingredients.filter((x) => x !== ingredient));
-    console.log(ingredient);
   };
 
   //const [file, setFile] = React.useState();
@@ -84,8 +83,7 @@ export default function Addrecipe(props) {
     // Do something with the selected file, such as upload or display it
 
     setFile(selectedFile);
-    console.log("Selected file");
-    console.log(selectedFile);
+
     displayImage(selectedFile);
   };
   const displayImage = (file) => {
@@ -106,9 +104,12 @@ export default function Addrecipe(props) {
     const headers = {
       Authorization: "Bearer " + localStorage.getItem("token"),
     };
-    const res = await axios.get("http://localhost:8080/api/v1/user", {
-      headers,
-    });
+    const res = await axios.get(
+      `${process.env.React_App_Backend_Url}/api/v1/user`,
+      {
+        headers,
+      }
+    );
 
     setCurrentuserid(res.data.id);
   }, []);
@@ -132,10 +133,7 @@ export default function Addrecipe(props) {
       `${process.env.React_App_Upload_Preset}`
     );
     uploadImageData.append("cloud_name", `${process.env.React_App_Cloud_Name}`);
-    console.log("Upload Image Data");
-    console.log(uploadImageData);
-    console.log("File");
-    console.log(file);
+
     const cloudinaryResponse = await axios.post(
       `https://api.cloudinary.com/v1_1/${process.env.React_App_Cloud_Name}/image/upload`,
       uploadImageData
@@ -175,7 +173,7 @@ export default function Addrecipe(props) {
         { ingredients: ingredients },
         { headers }
       );
-      console.log(addingredientsResponse.data);
+
       setLoading(false);
       enqueueSnackbar("Recipe added successfully", {
         variant: "success",
@@ -183,7 +181,7 @@ export default function Addrecipe(props) {
       });
     } catch (error) {
       setLoading(false);
-      console.log("Internal server error");
+
       enqueueSnackbar("Internal Server error", {
         variant: "Error",
         autoHideDuration: 5000,

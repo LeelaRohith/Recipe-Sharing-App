@@ -55,7 +55,6 @@ export default function SignIn() {
         user
       )
       .then(function (response) {
-        //console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
         enqueueSnackbar("Login Success", {
           variant: "success",

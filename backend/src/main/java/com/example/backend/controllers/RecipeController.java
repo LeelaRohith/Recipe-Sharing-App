@@ -1,24 +1,14 @@
 package com.example.backend.controllers;
 
 import com.example.backend.database.*;
-import com.example.backend.service.S3Service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import java.util.zip.DataFormatException;
-import java.util.zip.Deflater;
-import java.util.zip.Inflater;
-import java.io.*;
-import java.util.*;
 
-import static java.net.HttpURLConnection.HTTP_OK;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -136,6 +126,8 @@ public class RecipeController {
                    .cookingInstructions(l.get().get(i).getCookingInstructions())
                    .ingredients(ingredientsDTO)
                    .image(l.get().get(i).getImage())
+                   .userfirstname("user")
+                   .userlastname("user")
                    .build();
            currentUserRecipes.add(r);
 //           logger.info(String.valueOf(l.get().get(i).getId()));
@@ -164,6 +156,8 @@ public class RecipeController {
                         .ingredient(ingredients.get().get(j).getIngredient())
                         .build());
             }
+            String firstname = l.get(i).getUser().getFirstname();
+            String lastname=l.get(i).getUser().getLastname();
             RecipeDTO r = RecipeDTO
                     .builder()
                     .id(l.get(i).getId())
@@ -173,6 +167,8 @@ public class RecipeController {
                     .cookingInstructions(l.get(i).getCookingInstructions())
                     .ingredients(ingredientsDTO)
                     .image(l.get(i).getImage())
+                    .userfirstname(firstname)
+                    .userlastname(lastname)
                     .build();
             allRecipes.add(r);
 

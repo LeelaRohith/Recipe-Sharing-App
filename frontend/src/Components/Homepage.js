@@ -15,7 +15,7 @@ export default function Homepage() {
   //const [loading, setLoading] = useState(true);
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
-    console.log(searchQuery);
+
     const filteredRecipes = recipedetails.filter((recipe) =>
       recipe.name.toLowerCase().includes(searchQuery)
     );
@@ -31,7 +31,7 @@ export default function Homepage() {
         headers,
       }
     );
-    console.log(res.data.firstname);
+
     setUserfirstname(res.data.firstname);
     setUserlastname(res.data.lastname);
 
@@ -120,8 +120,8 @@ export default function Homepage() {
                 <div key={index}>
                   <RecipeReviewCard
                     details={item}
-                    userfirstname={userfirstname}
-                    userlastname={userlastname}
+                    userfirstname={item.userfirstname}
+                    userlastname={item.userlastname}
                     image={item.image}
                     type="view"
                     userid={item.currentuserid}
